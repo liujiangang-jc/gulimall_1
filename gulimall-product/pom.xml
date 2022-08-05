@@ -50,10 +50,15 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>com.lordofthejars.thymeleafarchetype</groupId>
-            <artifactId>thymeleaf-spring-maven-archetype</artifactId>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <optional>true</optional>
         </dependency>
-
+        <!--模板引擎thymeleaf-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-thymeleaf</artifactId>
+        </dependency>
         <!--        <dependency>-->
         <!--            <groupId>com.aliyun.oss</groupId>-->
         <!--            <artifactId>aliyun-sdk-oss</artifactId>-->

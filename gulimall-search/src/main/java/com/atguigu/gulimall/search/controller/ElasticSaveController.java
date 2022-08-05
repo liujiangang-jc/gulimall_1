@@ -6,7 +6,9 @@ import com.atguigu.common.to.es.SkuEsModel;
 import com.atguigu.common.utils.R;
 import com.atguigu.gulimall.search.service.ProductSaveService;
 import com.atguigu.gulimall.search.service.impl.ProductSaveServiceImpl;
+import com.sun.org.apache.xpath.internal.objects.XBooleanStatic;
 import lombok.extern.slf4j.Slf4j;
+import org.bouncycastle.pqc.crypto.ExchangePair;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,28 +22,22 @@ import java.util.List;
 @RequestMapping("/search/save")
 @RestController
 public class ElasticSaveController {
-    @Autowired
-    ProductSaveServiceImpl productSaveService;
 
+    @Autowired
+    ProductSaveService productSaveService;
     /**
      * 上架商品
      */
-    @PostMapping("product")
+    @PostMapping("/product")
     public R productStatusUp(@RequestBody List<SkuEsModel> skuEsModels) {
-        boolean result = false;// 是否执行成功
-        try {
-            result = productSaveService.productStatusUp(skuEsModels);
-
-        } catch (IOException e) {
-            // es客户端连接失败
-            log.error("ElasticSaveController商品上架错误：{}", e);
+        boolean status = false;
+        try{
+         status = productSaveService.productStatusUp(skuEsModels);
+        }catch (Exception e){
+            log.error("ElasticSaveController商品上架错误:{}",e);
             return R.error(BizCodeEnume.PRODUCT_UP_EXCEPTION.getCode(), BizCodeEnume.PRODUCT_UP_EXCEPTION.getMsg());
         }
-        if (result) {
-            return R.ok();// 执行成功
-        } else {
-            return R.error(BizCodeEnume.PRODUCT_UP_EXCEPTION.getCode(), BizCodeEnume.PRODUCT_UP_EXCEPTION.getMsg());
-        }
+        if (status){return R.ok();}
+        else {return R.error(BizCodeEnume.PRODUCT_UP_EXCEPTION.getCode(), BizCodeEnume.PRODUCT_UP_EXCEPTION.getMsg());}
     }
-
 }
