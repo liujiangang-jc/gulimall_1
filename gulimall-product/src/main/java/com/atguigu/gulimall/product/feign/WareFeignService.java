@@ -12,12 +12,12 @@ import java.util.List;
 public interface WareFeignService {
     /**
      * 1,设计时候可以加上泛型
+     *
      * @param skuIds
      * @return
      */
     @PostMapping("ware/waresku/hasstock")
     R getSkusHasStock(@RequestBody List<Long> skuIds);
-
 
 
 }

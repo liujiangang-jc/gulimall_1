@@ -32,7 +32,7 @@ public class ProductSaveServiceImpl implements ProductSaveService {
         //将数据保存到es
         //给es中建立索引,product
         BulkRequest bulkRequest = new BulkRequest();
-        for (SkuEsModel model:skuEsModels){
+        for (SkuEsModel model : skuEsModels) {
             //1,构造保存请求
             IndexRequest indexRequest = new IndexRequest(EsConstant.PRODUCT_INDEX);
             indexRequest.id(model.getSkuId().toString());
@@ -40,13 +40,13 @@ public class ProductSaveServiceImpl implements ProductSaveService {
             indexRequest.source(s, XContentType.JSON);
             bulkRequest.add(indexRequest);
         }
-        BulkResponse bulk = restHighLevelClient.bulk(bulkRequest,GulimallElasticSearchConfig.COMMON_OPTIONS);
+        BulkResponse bulk = restHighLevelClient.bulk(bulkRequest, GulimallElasticSearchConfig.COMMON_OPTIONS);
         //TODO 如果批量错误
         boolean b = bulk.hasFailures();
         List<String> collect = Arrays.stream(bulk.getItems()).map(item -> {
             return item.getId();
         }).collect(Collectors.toList());
-        log.info("商品上架成功:{},返回数据:{}",collect,bulk.toString());
+        log.info("商品上架成功:{},返回数据:{}", collect, bulk.toString());
         return b;
 
     }

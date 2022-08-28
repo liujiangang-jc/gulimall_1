@@ -7,7 +7,7 @@ import org.apache.ibatis.annotations.Param;
 
 /**
  * spu信息
- * 
+ *
  * @author leifengyang
  * @email leifengyang@gmail.com
  * @date 2019-10-01 21:08:49
@@ -15,5 +15,5 @@ import org.apache.ibatis.annotations.Param;
 @Mapper
 public interface SpuInfoDao extends BaseMapper<SpuInfoEntity> {
 
-    void updateSpuStatus(@Param("spuId") Long spuId,@Param("code") int code);
+    void updateSpuStatus(@Param("spuId") Long spuId, @Param("code") int code);
 }
