@@ -27,6 +27,7 @@ public interface CategoryService extends IService<CategoryEntity> {
     /**
      * 找到catelogId的完整路径；
      * [父/子/孙]
+     *
      * @param catelogId
      * @return
      */
@@ -36,6 +37,6 @@ public interface CategoryService extends IService<CategoryEntity> {
 
     List<CategoryEntity> getLevel1Category();
 
-    Map<String,List<Catelog2Vo>> getCatalogJson();
+    Map<String, List<Catelog2Vo>> getCatalogJson();
 }
 

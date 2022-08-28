@@ -22,10 +22,10 @@ public class Catelog2Vo {
     @Data
     @NoArgsConstructor
     @AllArgsConstructor
-    public static class Catelog3Vo{
-       private String catalog2Id;
-       private String id;
-       private String name;
+    public static class Catelog3Vo {
+        private String catalog2Id;
+        private String id;
+        private String name;
 
     }
 

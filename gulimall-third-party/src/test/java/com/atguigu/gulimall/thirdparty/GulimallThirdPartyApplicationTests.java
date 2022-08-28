@@ -17,7 +17,7 @@ class GulimallThirdPartyApplicationTests {
     @Test
     public void testUpload() throws FileNotFoundException {
         InputStream inputStream = new FileInputStream("/Users/jiangangliu/Downloads/h.png");
-        ossClient.putObject("liujiangang-ljg","h.png",inputStream);
+        ossClient.putObject("liujiangang-ljg", "h.png", inputStream);
         //关闭OSSClient
         ossClient.shutdown();
         System.out.println("上传完成...");

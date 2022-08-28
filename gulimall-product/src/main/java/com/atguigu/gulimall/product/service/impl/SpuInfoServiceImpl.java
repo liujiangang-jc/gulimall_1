@@ -284,7 +284,7 @@ public class SpuInfoServiceImpl extends ServiceImpl<SpuInfoDao, SpuInfoEntity> i
             R r = wareFeignService.getSkusHasStock(skuIdList);
             TypeReference<List<SkuHasStockVo>> typeReference = new TypeReference<List<SkuHasStockVo>>() {
             };
-            stockMap =r.getData(typeReference).stream().collect(Collectors.toMap(SkuHasStockVo::getSkuId, item -> item.getHasStock()));
+            stockMap = r.getData(typeReference).stream().collect(Collectors.toMap(SkuHasStockVo::getSkuId, item -> item.getHasStock()));
             //skyHasStockTo的id作为map的key,item的hasStock作为value封装成map
         } catch (Exception e) {
             log.error("库存服务查询出现问题:原因{}", e);
@@ -304,7 +304,7 @@ public class SpuInfoServiceImpl extends ServiceImpl<SpuInfoDao, SpuInfoEntity> i
             //设置库存信息
             if (finalStockMap == null) {
                 esModel1.setHasStock(true);
-            }else {
+            } else {
                 esModel1.setHasStock(finalStockMap.get(sku.getSkuId()));
             }
             esModel1.setHasStock(true);
@@ -326,11 +326,11 @@ public class SpuInfoServiceImpl extends ServiceImpl<SpuInfoDao, SpuInfoEntity> i
 
         //TODO 5,将数据发送给ES进行保存:gulimall-search
         R r = searchFeignService.productStatusUp(uoProducts);
-        if (r.getCode() == 0){
+        if (r.getCode() == 0) {
             //远程调用成功
             //TODO 6,修改当前spu的状态
             baseMapper.updateSpuStatus(spuId, ProductConstant.StatusEnum.SPU_UP.getCode());
-        }else {
+        } else {
             //远程调用失败
             //TODO 7,重复调用?接口幂等性
         }
